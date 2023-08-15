@@ -14,7 +14,7 @@ var (
 )
 
 func TestConnectRedis(t *testing.T) {
-	client := newClient(host, username, password, database)
+	client := Connection(host, username, password, database)
 
 	ctx := context.Background()
 	_, err := client.Ping(ctx).Result()
@@ -24,7 +24,7 @@ func TestConnectRedis(t *testing.T) {
 }
 
 func TestSetRedis(t *testing.T) {
-	client := newClient(host, username, password, database)
+	client := Connection(host, username, password, database)
 
 	asd := set(client, "test", "ini test", 24*time.Hour)
 	if asd != true {
@@ -33,7 +33,7 @@ func TestSetRedis(t *testing.T) {
 }
 
 func TestGetRedis(t *testing.T) {
-	client := newClient(host, username, password, database)
+	client := Connection(host, username, password, database)
 
 	status, _ := get(client, "test")
 	if status != true {

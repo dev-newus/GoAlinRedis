@@ -13,9 +13,10 @@ import (
 )
 
 // function for create new client
-func newClient(host string, username string, password string, database int) *redis.Client {
+func Connection(host string, username string, password string, database int) *redis.Client {
 	client := redis.NewClient(&redis.Options{
 		Addr:     host,
+		Username: username,
 		Password: password,
 		DB:       database,
 	})
